@@ -99,7 +99,7 @@ class NetworkClient {
                 images.append(imageUrl!)
             }
             completion(true, nil, nil, images)
-            }.resume()
+        }.resume()
     }
     
     //MARK Flickr bbox

@@ -24,7 +24,6 @@ class CollectionViewController: UIViewController {
     var loadingNewImages = false
     
     var pinImagaes: [String] = []
-    var pinsCreated: [Pin] = []
     
     //Mark: implementing the rquired view functions
     override func viewDidLoad() {

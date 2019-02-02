@@ -18,6 +18,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var editImagesButton: UIBarButtonItem!
     var fetchedImages: [URL] = []
     var createdPins: [Pin]!
+    var isEditingPins = false
+    var pinsToDelete: [Pin] = []
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var fetchedResultsController: NSFetchedResultsController<Pin>!
@@ -30,7 +32,7 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        setupFetchedResultsController()
+        //setupFetchedResultsController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,30 +42,14 @@ class MapViewController: UIViewController {
     
     //MARK: IBActions
     @IBAction func editPins(_ sender: Any) {
-        self.performSegue(withIdentifier: StoryBoardId.LoadNewImagesSegue.rawValue, sender: view)
-    }
-    
-    //MARK: fetch request
-    fileprivate func setupFetchedResultsController() {
-        let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: appDelegate.dataController.viewContext, sectionNameKeyPath: nil, cacheName: "pins")
-        fetchedResultsController.delegate = self
-        do {
-            if let result = try? appDelegate.dataController.viewContext.fetch(fetchRequest) {
-                createdPins = result
-            }
-        } catch {
-            fatalError("The fetch could not be performed: \(error.localizedDescription)")
-        }
+        isEditingPins = true
+//        self.performSegue(withIdentifier: StoryBoardId.LoadNewImagesSegue.rawValue, sender: view)
     }
     
     //MARK: UI Configurations
     func addPinsToMap() {
         var loadedPins: [MKPointAnnotation] = []
-        for pin in createdPins {
+        for pin in fetchedResultsController?.fetchedObjects ?? [] {
             let pinLocation = CLLocationCoordinate2D(latitude: pin.latitude, longitude: pin.longitude)
             let pinToAdd = MKPointAnnotation()
             pinToAdd.coordinate = pinLocation
@@ -93,8 +79,26 @@ class MapViewController: UIViewController {
             let photosVC = storyboard?.instantiateViewController(withIdentifier: StoryBoardId.PhotosCollectionVC.rawValue) as! CollectionViewController
             if let sender = sender as? MKAnnotationView {
                 photosVC.receivedPinFromSegue = sender.annotation?.coordinate
-                photosVC.pinsCreated = createdPins
+                photosVC.pinsCreated = fetchedResultsController?.fetchedObjects ?? []
             }
         }
     }
+    
+    //MARK: fetch request
+    fileprivate func setupFetchedResultsController() {
+        let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: appDelegate.dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+            //            createdPins = fetchedResultsController.fetchedObjects
+        } catch {
+            fatalError("The fetch could not be performed: \(error.localizedDescription)")
+        }
+    }
+    
 }

@@ -200,8 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				89BDDC472204259800D86226 /* CollectionVC+FlowLayout.swift */,
-				89BDDC49220425AF00D86226 /* CollectionVC+Delegate.swift */,
 				89BDDC4B220425BF00D86226 /* CollectionVC+NSFetchedResultsDelegate.swift */,
+				89BDDC49220425AF00D86226 /* CollectionVC+Delegate.swift */,
 			);
 			path = CollectionVC;
 			sourceTree = "<group>";

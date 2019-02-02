@@ -17,26 +17,21 @@ extension MapViewController {
         if sender.state == .began {
             let locationInView = sender.location(in: mapView)
             let locationOnMap = mapView.convert(locationInView, toCoordinateFrom: mapView)
-            addAnnotation(location: locationOnMap)
+            createNewPin(coordinates: locationOnMap)
         }
     }
     
-    //MARK: Annotation Adding to View
-    func addAnnotation(location: CLLocationCoordinate2D){
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        let newPin = createNewPin(coordinates: location)
-        createdPins.append(newPin)
-        mapView.addAnnotation(annotation)
-    }
-    
     //MARK: creating a new Pin
-    func createNewPin(coordinates: CLLocationCoordinate2D) -> Pin{
+    func createNewPin(coordinates: CLLocationCoordinate2D) {
         let newPin = Pin(context: appDelegate.dataController.viewContext)
         newPin.latitude = coordinates.latitude
         newPin.longitude = coordinates.longitude
         newPin.creationDate = Date()
         try? appDelegate.dataController.viewContext.save()
-        return newPin
+    }
+    
+    //MARK: load pin from store
+    func loadPin(lat: Double, long: Double) -> Pin? {
+        return fetchedResultsController.fetchedObjects?.first(where: { $0.latitude == lat && $0.longitude == long})
     }
 }

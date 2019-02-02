@@ -56,7 +56,6 @@ class DataController {
     }
 }
 
-
 extension DataController {
     func autoSaveViewContext(interval: TimeInterval = 30) {
         print("autoSaving...")
