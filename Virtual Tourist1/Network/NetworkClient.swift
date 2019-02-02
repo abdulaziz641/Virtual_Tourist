@@ -41,23 +41,28 @@ class NetworkClient {
         request.httpMethod = method.rawValue
         request.httpBody = data
         
-        print(request.url!)
-        
         return request
     }
     
     //MARK: Search For Images
-    static func searchForImageFromFlickr(_ methodParameters: [String: AnyObject]?, lat: Double, long: Double, completion: @escaping (Bool, String?, Error?, [String]?) -> ()) {
-        let methodParameters: [String: AnyObject] = [
+    static func searchForImageFromFlickr(_ methodParameters: [String: AnyObject]?, pages: Int? = 0, lat: Double, long: Double, completion: @escaping (Bool, String?, Error?, [String]?) -> ()) {
+        var methodParameters: [String: AnyObject] = [
             Constants.FlickrParameterKeys.Method: Constants.FlickrParameterValues.SearchMethod,
             Constants.FlickrParameterKeys.APIKey: Constants.FlickrParameterValues.APIKey,
             Constants.FlickrParameterKeys.SafeSearch: Constants.FlickrParameterValues.UseSafeSearch,
             Constants.FlickrParameterKeys.Extras: Constants.FlickrParameterValues.SmallURL,
             Constants.FlickrParameterKeys.BoundingBox: bboxString(latitude: lat, longitude: long),
             Constants.FlickrParameterKeys.Format: Constants.FlickrParameterValues.ResponseFormat,
-            Constants.FlickrParameterKeys.NoJSONCallback: Constants.FlickrParameterValues.DisableJSONCallback
+            Constants.FlickrParameterKeys.NoJSONCallback: Constants.FlickrParameterValues.DisableJSONCallback,
+            Constants.FlickrParameterKeys.Accuracy: Constants.FlickrParameterValues.Accuracy,
+            Constants.FlickrParameterKeys.PerPage: Constants.FlickrParameterValues.PerPage
             ] as [String: AnyObject]
-        let request = buildURLFromProperties(url: "https://api.flickr.com/services/rest/", andParamaters: methodParameters)
+        
+        if pages == 0 {
+            methodParameters[Constants.FlickrParameterKeys.Page] = String(Int.random(in: 1..<1000)) as AnyObject
+        }
+        
+        let request = buildURLFromProperties(url: Constants.Flickr.APIHost, andParamaters: methodParameters)
         
         // Create network request
         URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -107,4 +112,3 @@ class NetworkClient {
         return "\(minimumLon),\(minimumLat),\(maximumLon),\(maximumLat)"
     }
 }
-

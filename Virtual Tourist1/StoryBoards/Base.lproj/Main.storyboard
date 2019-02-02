@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dol-zB-wvY">
-                                <rect key="frame" x="0.0" y="75" width="414" height="787"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                             </mapView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngT-HO-Y9a">
-                                <rect key="frame" x="0.0" y="31" width="414" height="44"/>
+                            <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngT-HO-Y9a">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="MSk-rB-stk"/>
                                 </constraints>
@@ -40,8 +40,8 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dol-zB-wvY" secondAttribute="bottom" id="754-RV-bNq"/>
                             <constraint firstItem="dol-zB-wvY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="He2-xT-gqJ"/>
-                            <constraint firstItem="ngT-HO-Y9a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-13" id="Lwv-n0-B8T"/>
-                            <constraint firstItem="dol-zB-wvY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="31" id="M57-r0-zRh"/>
+                            <constraint firstItem="dol-zB-wvY" firstAttribute="top" secondItem="ngT-HO-Y9a" secondAttribute="bottom" id="JQc-AE-cjX"/>
+                            <constraint firstItem="ngT-HO-Y9a" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="44" id="Lwv-n0-B8T"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dol-zB-wvY" secondAttribute="trailing" id="O8t-pK-AOo"/>
                             <constraint firstItem="ngT-HO-Y9a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qJP-P8-O4d"/>
                             <constraint firstItem="ngT-HO-Y9a" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="r5p-27-Lse"/>
@@ -49,13 +49,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="editImagesButton" destination="MDL-CC-zdS" id="orf-IF-Sdc"/>
                         <outlet property="mapView" destination="dol-zB-wvY" id="Yal-ZZ-1Tj"/>
                         <segue destination="Ktj-Qu-Xb5" kind="show" identifier="loadRelatedImages" id="gzZ-Hm-hCs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-79.710144927536234" y="133.25892857142856"/>
+            <point key="canvasLocation" x="-487" y="133"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PNJ-nC-Tw7">
@@ -178,6 +179,7 @@
                     <connections>
                         <outlet property="collectionView" destination="B4R-Es-aOQ" id="k7X-Gw-p1t"/>
                         <outlet property="flowLayout" destination="Ehu-gg-aCg" id="BYo-NI-bEI"/>
+                        <outlet property="loadNewImagesButton" destination="OvA-4I-rnX" id="7dx-iC-HW9"/>
                         <outlet property="mapView" destination="1jP-GI-nqV" id="lMu-G0-2RR"/>
                     </connections>
                 </viewController>

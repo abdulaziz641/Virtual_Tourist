@@ -12,18 +12,18 @@ import MapKit
 class CollectionViewController: UIViewController {
     
     //MARK: class properties and outlets
-    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadNewImagesButton: UIBarButtonItem!
     
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var receivedPinFromSegue: CLLocationCoordinate2D! = CLLocationCoordinate2D()
     
-    let reuseIdentifier = "flickrPhotoCell"
-    var pinImagaes: [String] = []
+    var loadingNewImages = false
     
+    var pinImagaes: [String] = []
     var pinsCreated: [Pin] = []
     
     //Mark: implementing the rquired view functions
@@ -38,6 +38,11 @@ class CollectionViewController: UIViewController {
         fetchImages()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        receivedPinFromSegue = CLLocationCoordinate2D()
+    }
+    
     //Mark: UI configuration
     func configureFlowLayout() {
         let space: CGFloat = 3.0
@@ -45,6 +50,28 @@ class CollectionViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = dimension
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+    }
+    
+    //MARK: IBActions
+    @IBAction func close(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func fetchNewImages(_ sender: Any) {
+        loadingNewImages = true
+        let lat = receivedPinFromSegue.latitude
+        let long = receivedPinFromSegue.longitude
+        
+        NetworkClient.searchForImageFromFlickr([:], lat: lat, long: long) { (isSucceeded, _, _, photosList) in
+            if isSucceeded {
+                self.pinImagaes = photosList!
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            } else {
+                self.showAlert(title: "Error", message: "No Images to display", buttonText: "Try Again")
+            }
+        }
     }
     
     func fetchImages() {
@@ -59,13 +86,4 @@ class CollectionViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func close(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func fetchNewImages(_ sender: Any) {
-        showAlert(title: "Fetching New Images", message: "", buttonText: "Ok")
-    }
 }
-

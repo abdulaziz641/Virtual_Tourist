@@ -144,7 +144,6 @@
 			children = (
 				89BDDC2F220423F000D86226 /* NetworkClient.swift */,
 				89BDDC31220423FE00D86226 /* NetworkConstants.swift */,
-				89BDDC352204241F00D86226 /* API */,
 				89BDDC342204241500D86226 /* ResponseModels */,
 				89BDDC332204240900D86226 /* RequestMdels */,
 				89BDDC362204242F00D86226 /* GenericDecoder.swift */,
@@ -195,13 +194,6 @@
 				89BDDC3A220424B400D86226 /* FlickrResponse.swift */,
 			);
 			path = ResponseModels;
-			sourceTree = "<group>";
-		};
-		89BDDC352204241F00D86226 /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 		89BDDC442204254C00D86226 /* CollectionVC */ = {

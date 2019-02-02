@@ -12,14 +12,8 @@ import CoreData
 
 extension MapViewController {
     
-    //MARK: location functions
-    @IBAction func addLocation(_ sender: Any) {
-        print("Hello")
-    }
-    
     //MARK: handling long tap
     @objc func longTap(sender: UIGestureRecognizer){
-        print("long tap")
         if sender.state == .began {
             let locationInView = sender.location(in: mapView)
             let locationOnMap = mapView.convert(locationInView, toCoordinateFrom: mapView)
@@ -42,7 +36,7 @@ extension MapViewController {
         newPin.latitude = coordinates.latitude
         newPin.longitude = coordinates.longitude
         newPin.creationDate = Date()
-        //try? AppDelegate.dataController.viewContext.save()
+        try? appDelegate.dataController.viewContext.save()
         return newPin
     }
 }

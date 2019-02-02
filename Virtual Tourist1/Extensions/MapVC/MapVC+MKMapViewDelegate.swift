@@ -12,7 +12,7 @@ extension MapViewController: MKMapViewDelegate {
     //MARK: Delegate Functions
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        let reuseId = "pin"
+        let reuseId = StoryBoardId.PinResueIdentifier.rawValue
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
@@ -27,6 +27,7 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        performSegue(withIdentifier: "loadRelatedImages", sender: view)
+        
+        performSegue(withIdentifier: StoryBoardId.LoadNewImagesSegue.rawValue, sender: view)
     }
 }

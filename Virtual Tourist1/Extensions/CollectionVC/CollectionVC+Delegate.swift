@@ -20,23 +20,33 @@ extension CollectionViewController:  UICollectionViewDataSource, UICollectionVie
         return pinImagaes.count
     }
     
+    func configureUI(enable: Bool) {
+        if enable {
+            loadNewImagesButton.isEnabled = false
+            loadingNewImages = true
+        } else {
+            loadNewImagesButton.isEnabled = true
+            loadingNewImages = false
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as! FlickrPhotoCell
-                DispatchQueue.main.async {
-                    let imageURL = self.pinImagaes[indexPath.row]
-                    if let imageData = try? Data(contentsOf: URL(string: imageURL)!) {
-                        cell.imageView.image = UIImage(data: imageData)
-                        cell.downloadingIndicator.stopAnimating()
-                        cell.downloadingIndicator.isHidden = true
-                    }
-                }
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FlickrPhotoCell else {
-//            return UICollectionViewCell()
-//        }
-//        let url = URL(string: pinImagaes[indexPath.row])
-//        cell.imageView.kf.setImage(with: url) { (_) in
-//            cell.downloadingIndicator.stopAnimating()
-//        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryBoardId.FlickrCellResueIdentifier.rawValue, for: indexPath) as! FlickrPhotoCell
+        DispatchQueue.main.async {
+            let imageURL = self.pinImagaes[indexPath.row]
+            if let imageData = try? Data(contentsOf: URL(string: imageURL)!) {
+                cell.imageView.image = UIImage(data: imageData)
+                cell.downloadingIndicator.stopAnimating()
+                cell.downloadingIndicator.isHidden = true
+            }
+        }
+        //        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryBoardId.FlickrCellResueIdentifier.rawValue, for: indexPath) as? FlickrPhotoCell else {
+        //            return UICollectionViewCell()
+        //        }
+        //        let url = URL(string: pinImagaes[indexPath.row])
+        //        cell.imageView.kf.setImage(with: url) { (_) in
+        //            cell.downloadingIndicator.stopAnimating()
+        //        }
         return cell
     }
     
