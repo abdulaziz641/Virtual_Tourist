@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8953C2072206451B000D4A53 /* CollectionVC+ImageFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953C2062206451B000D4A53 /* CollectionVC+ImageFunctions.swift */; };
+		8953C20B220649DA000D4A53 /* MapVC+UIConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953C20A220649DA000D4A53 /* MapVC+UIConfigurations.swift */; };
 		89BDDC0E2204228300D86226 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC0D2204228300D86226 /* AppDelegate.swift */; };
 		89BDDC132204228300D86226 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89BDDC112204228300D86226 /* Main.storyboard */; };
 		89BDDC162204228300D86226 /* Virtual_Tourist1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC142204228300D86226 /* Virtual_Tourist1.xcdatamodeld */; };
@@ -21,7 +23,7 @@
 		89BDDC3B220424B400D86226 /* FlickrResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC3A220424B400D86226 /* FlickrResponse.swift */; };
 		89BDDC3D220424D800D86226 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC3C220424D800D86226 /* DataController.swift */; };
 		89BDDC3F220424F900D86226 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC3E220424F900D86226 /* MapViewController.swift */; };
-		89BDDC412204250500D86226 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC402204250500D86226 /* CollectionViewController.swift */; };
+		89BDDC412204250500D86226 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC402204250500D86226 /* PhotoAlbumViewController.swift */; };
 		89BDDC432204251700D86226 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC422204251700D86226 /* Constants.swift */; };
 		89BDDC482204259800D86226 /* CollectionVC+FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC472204259800D86226 /* CollectionVC+FlowLayout.swift */; };
 		89BDDC4A220425AF00D86226 /* CollectionVC+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC49220425AF00D86226 /* CollectionVC+Delegate.swift */; };
@@ -29,11 +31,11 @@
 		89BDDC4E2204261100D86226 /* MapVC+MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC4D2204261100D86226 /* MapVC+MKMapViewDelegate.swift */; };
 		89BDDC502204261C00D86226 /* MapVC+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC4F2204261C00D86226 /* MapVC+NSFetchedResultsControllerDelegate.swift */; };
 		89BDDC522204262700D86226 /* MapVc+PinAndAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC512204262700D86226 /* MapVc+PinAndAnnotation.swift */; };
-		89BDDC542204277300D86226 /* Pin+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC532204277300D86226 /* Pin+Extension.swift */; };
-		89BDDC562204278200D86226 /* Photo+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BDDC552204278200D86226 /* Photo+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8953C2062206451B000D4A53 /* CollectionVC+ImageFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionVC+ImageFunctions.swift"; sourceTree = "<group>"; };
+		8953C20A220649DA000D4A53 /* MapVC+UIConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapVC+UIConfigurations.swift"; sourceTree = "<group>"; };
 		89BDDC0A2204228300D86226 /* Virtual Tourist1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Tourist1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89BDDC0D2204228300D86226 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89BDDC122204228300D86226 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,7 +52,7 @@
 		89BDDC3A220424B400D86226 /* FlickrResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrResponse.swift; sourceTree = "<group>"; };
 		89BDDC3C220424D800D86226 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		89BDDC3E220424F900D86226 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		89BDDC402204250500D86226 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		89BDDC402204250500D86226 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
 		89BDDC422204251700D86226 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		89BDDC472204259800D86226 /* CollectionVC+FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionVC+FlowLayout.swift"; sourceTree = "<group>"; };
 		89BDDC49220425AF00D86226 /* CollectionVC+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionVC+Delegate.swift"; sourceTree = "<group>"; };
@@ -58,8 +60,6 @@
 		89BDDC4D2204261100D86226 /* MapVC+MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapVC+MKMapViewDelegate.swift"; sourceTree = "<group>"; };
 		89BDDC4F2204261C00D86226 /* MapVC+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapVC+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		89BDDC512204262700D86226 /* MapVc+PinAndAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapVc+PinAndAnnotation.swift"; sourceTree = "<group>"; };
-		89BDDC532204277300D86226 /* Pin+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+Extension.swift"; sourceTree = "<group>"; };
-		89BDDC552204278200D86226 /* Photo+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +166,6 @@
 			children = (
 				89BDDC442204254C00D86226 /* CollectionVC */,
 				89BDDC452204255400D86226 /* MapVC */,
-				89BDDC462204256600D86226 /* NSManagedObject */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -175,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				89BDDC3E220424F900D86226 /* MapViewController.swift */,
-				89BDDC402204250500D86226 /* CollectionViewController.swift */,
+				89BDDC402204250500D86226 /* PhotoAlbumViewController.swift */,
 				89BDDC422204251700D86226 /* Constants.swift */,
 			);
 			path = Controllers;
@@ -202,6 +201,7 @@
 				89BDDC472204259800D86226 /* CollectionVC+FlowLayout.swift */,
 				89BDDC4B220425BF00D86226 /* CollectionVC+NSFetchedResultsDelegate.swift */,
 				89BDDC49220425AF00D86226 /* CollectionVC+Delegate.swift */,
+				8953C2062206451B000D4A53 /* CollectionVC+ImageFunctions.swift */,
 			);
 			path = CollectionVC;
 			sourceTree = "<group>";
@@ -212,17 +212,9 @@
 				89BDDC4D2204261100D86226 /* MapVC+MKMapViewDelegate.swift */,
 				89BDDC4F2204261C00D86226 /* MapVC+NSFetchedResultsControllerDelegate.swift */,
 				89BDDC512204262700D86226 /* MapVc+PinAndAnnotation.swift */,
+				8953C20A220649DA000D4A53 /* MapVC+UIConfigurations.swift */,
 			);
 			path = MapVC;
-			sourceTree = "<group>";
-		};
-		89BDDC462204256600D86226 /* NSManagedObject */ = {
-			isa = PBXGroup;
-			children = (
-				89BDDC532204277300D86226 /* Pin+Extension.swift */,
-				89BDDC552204278200D86226 /* Photo+Extension.swift */,
-			);
-			path = NSManagedObject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89BDDC412204250500D86226 /* CollectionViewController.swift in Sources */,
+				89BDDC412204250500D86226 /* PhotoAlbumViewController.swift in Sources */,
 				89BDDC3F220424F900D86226 /* MapViewController.swift in Sources */,
 				89BDDC32220423FE00D86226 /* NetworkConstants.swift in Sources */,
 				89BDDC2E220423BB00D86226 /* UIViewController+UIResponder.swift in Sources */,
@@ -304,12 +296,11 @@
 				89BDDC2C2204239C00D86226 /* FlickrPhotoCell.swift in Sources */,
 				89BDDC3D220424D800D86226 /* DataController.swift in Sources */,
 				89BDDC4E2204261100D86226 /* MapVC+MKMapViewDelegate.swift in Sources */,
-				89BDDC562204278200D86226 /* Photo+Extension.swift in Sources */,
 				89BDDC502204261C00D86226 /* MapVC+NSFetchedResultsControllerDelegate.swift in Sources */,
-				89BDDC542204277300D86226 /* Pin+Extension.swift in Sources */,
 				89BDDC4C220425BF00D86226 /* CollectionVC+NSFetchedResultsDelegate.swift in Sources */,
 				89BDDC432204251700D86226 /* Constants.swift in Sources */,
 				89BDDC392204244600D86226 /* HTTPMethods.swift in Sources */,
+				8953C2072206451B000D4A53 /* CollectionVC+ImageFunctions.swift in Sources */,
 				89BDDC522204262700D86226 /* MapVc+PinAndAnnotation.swift in Sources */,
 				89BDDC162204228300D86226 /* Virtual_Tourist1.xcdatamodeld in Sources */,
 				89BDDC4A220425AF00D86226 /* CollectionVC+Delegate.swift in Sources */,
@@ -317,6 +308,7 @@
 				89BDDC3B220424B400D86226 /* FlickrResponse.swift in Sources */,
 				89BDDC0E2204228300D86226 /* AppDelegate.swift in Sources */,
 				89BDDC30220423F000D86226 /* NetworkClient.swift in Sources */,
+				8953C20B220649DA000D4A53 /* MapVC+UIConfigurations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

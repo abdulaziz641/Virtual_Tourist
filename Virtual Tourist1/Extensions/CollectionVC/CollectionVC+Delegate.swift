@@ -9,26 +9,40 @@
 import Foundation
 import UIKit
 
-extension CollectionViewController:  UICollectionViewDataSource, UICollectionViewDelegate {
+extension PhotoAlbumViewController:  UICollectionViewDataSource, UICollectionViewDelegate {
     
     //Mark: Delegate Functions
-    func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return pinImagaes.count }
+    func numberOfSections(in collectionView: UICollectionView) -> Int { return (fetchedResultsController.sections?.count)! }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return fetchedResultsController.fetchedObjects?.count ?? 0
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryBoardId.FlickrCellResueIdentifier.rawValue, for: indexPath) as! FlickrPhotoCell
-        DispatchQueue.main.async {
-            let imageURL = self.pinImagaes[indexPath.row]
-            if let imageData = try? Data(contentsOf: URL(string: imageURL)!) {
-                cell.imageView.image = UIImage(data: imageData)
-                cell.downloadingIndicator.stopAnimating()
-            }
+        let photo = fetchedResultsController.object(at: indexPath)
+        if let imageData = photo.photoData, let image = UIImage(data: imageData) {
+            cell.imageView.image = image
+            cell.downloadingIndicator.stopAnimating()
+        } else if let url = URL(string: photo.photoURL ?? "") {
+            
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                
+                guard let data = data else {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    cell.imageView.image = UIImage(data: data)
+                    cell.downloadingIndicator.stopAnimating()
+                    photo.photoData = data
+                    try! self.appDelegate.dataController.viewContext.save()
+                }
+            }.resume()
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let selectedPhoto = appDelegate.pinImagaes[indexPath.row]
-        //        showAlert(title: "Selected", message: "selected photo with URL: \(selectedPhoto)", buttonText: "Ok")
+        removePhoto(indexPath: indexPath)
     }
 }

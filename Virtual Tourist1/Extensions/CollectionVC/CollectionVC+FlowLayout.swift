@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension CollectionViewController: UICollectionViewDelegateFlowLayout {
+extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
     
     //Mark: UICollectionViewDelegateFlowLayout Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -17,5 +17,22 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
+    }
+    
+    //Mark: UI configuration
+    func configureFlowLayout() {
+        let space: CGFloat = 3.0
+        let dimension = (view.frame.width - 2) / 3
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = dimension
+        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+    }
+    
+    func editingConfiguration() {
+        if isEditingImages {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(editImages(_:)))
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit Images", style: .plain, target: self, action: #selector(editImages(_:)))
+        }
     }
 }

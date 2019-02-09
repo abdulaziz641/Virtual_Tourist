@@ -30,6 +30,13 @@ extension MapViewController {
         try? appDelegate.dataController.viewContext.save()
     }
     
+    //MARK: remove a Pin from store
+    func removePin(lat: Double, long: Double) {
+        let pinToDelete = loadPin(lat: lat, long: long)!
+        appDelegate.dataController.viewContext.delete(pinToDelete)
+        try! appDelegate.dataController.viewContext.save()
+    }
+    
     //MARK: load pin from store
     func loadPin(lat: Double, long: Double) -> Pin? {
         return fetchedResultsController.fetchedObjects?.first(where: { $0.latitude == lat && $0.longitude == long})

@@ -111,4 +111,30 @@ class NetworkClient {
         let maximumLat = min(latitude + Constants.Flickr.SearchBBoxHalfHeight, Constants.Flickr.SearchLatRange.1)
         return "\(minimumLon),\(minimumLat),\(maximumLon),\(maximumLat)"
     }
+    
+    //MARK: Image Downloader
+    static func downloadImage(url: URL, completion: @escaping (Bool, Data?, String) -> ()) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                completion(false, nil, "The provided URL returned an error. \(url)")
+                return
+            }
+            
+            /*GUARD: Did e receive Data? */
+            guard let data = data else {
+                completion(false, nil, "The returned data from this URL: \(url), is nil.")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 300 else {
+                completion(false, nil, "The request for this URL \(url), returned an error, please try again.")
+                return
+            }
+            
+            completion(true, data, "")
+        }.resume()
+    }
 }

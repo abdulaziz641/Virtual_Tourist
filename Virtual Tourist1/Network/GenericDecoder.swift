@@ -10,7 +10,6 @@ import Foundation
 
 //MARK: Generic Decoder
 func decodeJson<T: Decodable>(using type: T.Type, and data: Data) -> T{
-    
     do {
         let resultFromParsing = try JSONDecoder().decode(T.self, from: data)
         return resultFromParsing

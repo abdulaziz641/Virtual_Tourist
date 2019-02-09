@@ -9,14 +9,15 @@
 import UIKit
 
 class FlickrPhotoCell: UICollectionViewCell {
+    
     //MARK: Cell Properties
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var downloadingIndicator: UIActivityIndicatorView!
     
-    //Mark: UI Configuration
-    func updateUI(for photo: Photo) {
-        let newImage = try! UIImage(data: Data(contentsOf: photo.photoURL!))
-        imageView.image = newImage
+    // MARK: Prepare for use
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        downloadingIndicator.startAnimating()
     }
 }

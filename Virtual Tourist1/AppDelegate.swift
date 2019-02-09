@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Core Data Saving support
     func saveContext() {
-        try? dataController.viewContext.save()
+        if dataController.viewContext.hasChanges {
+            try? dataController.viewContext.save()
+        }
     }
 }

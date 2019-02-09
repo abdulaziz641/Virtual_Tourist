@@ -32,11 +32,8 @@ extension MapViewController: MKMapViewDelegate {
         } else {
             let lat = view.annotation?.coordinate.latitude
             let long = view.annotation?.coordinate.longitude
-            
-            if let loadedPin = loadPin(lat: lat!, long: long!) {
-                appDelegate.dataController.viewContext.delete(loadedPin)
-                try! appDelegate.dataController.viewContext.save()
-            }
+            removePin(lat: lat!, long: long!)
         }
+        mapView.deselectAnnotation(view.annotation, animated: true)
     }
 }
