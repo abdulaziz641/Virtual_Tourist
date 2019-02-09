@@ -24,20 +24,18 @@ extension PhotoAlbumViewController:  UICollectionViewDataSource, UICollectionVie
             cell.imageView.image = image
             cell.downloadingIndicator.stopAnimating()
         } else if let url = URL(string: photo.photoURL ?? "") {
-            
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                
-                guard let data = data else {
+            NetworkClient.downloadImage(url: url) { (isSucceeded, data, errorMessage) in
+                guard (isSucceeded == true) else {
+                    self.showAlert(title: "Error Downloading Image", message: errorMessage, buttonText: "Try Again")
                     return
                 }
-                
                 DispatchQueue.main.async {
-                    cell.imageView.image = UIImage(data: data)
+                    cell.imageView.image = UIImage(data: data!)
                     cell.downloadingIndicator.stopAnimating()
                     photo.photoData = data
                     try! self.appDelegate.dataController.viewContext.save()
                 }
-            }.resume()
+            }
         }
         return cell
     }
