@@ -33,24 +33,23 @@ class PhotoAlbumViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFetchedResultsController()
-        collectionView.reloadData()
+        if fetchedResultsController.fetchedObjects?.count == 0 {
+            fetchImages()
+        } else {
+            loadNewImagesButton.isEnabled = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         editingConfiguration()
         configureFlowLayout()
-        fetchImages()
+        collectionView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        receivedPinFromSegue = CLLocationCoordinate2D()
-    }
-    
-    //MARK: IBActions
-    @objc func close(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        try! self.appDelegate.dataController.viewContext.save()
     }
     
     //MARK: IBActions
@@ -60,6 +59,7 @@ class PhotoAlbumViewController: UIViewController {
     }
     
     @IBAction func fetchNewImages(_ sender: Any) {
+        loadNewImagesButton.isEnabled = false
         loadingNewImages = !loadingNewImages
         for photo in fetchedResultsController.fetchedObjects ?? [] {
             appDelegate.dataController.viewContext.delete(photo)
@@ -79,8 +79,7 @@ class PhotoAlbumViewController: UIViewController {
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            fatalError("The fetch could not be performed: \(error.localizedDescription)")
+            showAlert(title: "Failure", message: "The fetch could not be performed", buttonText: "OK")
         }
     }
 }
-

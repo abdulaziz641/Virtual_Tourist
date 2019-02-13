@@ -14,16 +14,17 @@ extension PhotoAlbumViewController {
     
     //MARK: Image Fetching
     func fetchImages() {
-        let lat = receivedPinFromSegue.latitude
-        let long = receivedPinFromSegue.longitude
+        let lat = loadedPinFromStore.latitude
+        let long = loadedPinFromStore.longitude
         NetworkClient.searchForImageFromFlickr(nil, lat: lat, long: long) { (isSucceeded, _, _, listOfPhotosUrls) in
             if isSucceeded {
                 for url in listOfPhotosUrls ?? [] {
                     self.createNewPhoto(for: self.loadedPinFromStore, and: url)
                 }
-            } else {
-                self.showAlert(title: "No images found", message: "No images found on this location", buttonText: "Try Again")
             }
+        }
+        DispatchQueue.main.async {
+            self.loadNewImagesButton.isEnabled = true
         }
     }
     
@@ -38,7 +39,6 @@ extension PhotoAlbumViewController {
     }
     
     //MARK: remove Photo from store
-    
     func removePhoto(indexPath: IndexPath) {
         let photoToDelete = fetchedResultsController.object(at: indexPath)
         appDelegate.dataController.viewContext.delete(photoToDelete)

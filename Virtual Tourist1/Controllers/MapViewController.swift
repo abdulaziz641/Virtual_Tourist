@@ -29,7 +29,6 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        setupFetchedResultsController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,7 +53,7 @@ class MapViewController: UIViewController {
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            fatalError("The fetch could not be performed: \(error.localizedDescription)")
+            showAlert(title: "Fetching Failure", message: "The fetch could not be performed.", buttonText: "Ok")
         }
     }
     
@@ -65,8 +64,9 @@ class MapViewController: UIViewController {
             if let sender = sender as? MKAnnotationView {
                 let lat = Double((sender.annotation?.coordinate.latitude)!)
                 let long = Double((sender.annotation?.coordinate.longitude)!)
-                photosVC.loadedPinFromStore = Pin(context: appDelegate.dataController.viewContext)
+                //photosVC.loadedPinFromStore = Pin(context: appDelegate.dataController.viewContext)
                 photosVC.loadedPinFromStore = loadPin(lat: lat, long: long)!
+                print("\(photosVC.loadedPinFromStore.latitude) \(photosVC.loadedPinFromStore.longitude)")
                 photosVC.receivedPinFromSegue = sender.annotation?.coordinate
             }
         }

@@ -51,7 +51,7 @@ struct Constants {
         static let SmallURL = "url_s"
         static let UseSafeSearch = "1"
         static let Accuracy = "11"
-        static let PerPage = "25"
+        static let PerPage = "30"
     }
     
     // MARK: Flickr Response Keys

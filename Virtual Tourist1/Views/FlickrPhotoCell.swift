@@ -18,6 +18,8 @@ class FlickrPhotoCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
-        downloadingIndicator.startAnimating()
+        if !downloadingIndicator.isAnimating {
+            downloadingIndicator.startAnimating()
+        }
     }
 }

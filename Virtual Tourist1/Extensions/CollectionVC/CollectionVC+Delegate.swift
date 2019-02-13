@@ -12,9 +12,9 @@ import UIKit
 extension PhotoAlbumViewController:  UICollectionViewDataSource, UICollectionViewDelegate {
     
     //Mark: Delegate Functions
-    func numberOfSections(in collectionView: UICollectionView) -> Int { return (fetchedResultsController.sections?.count)! }
+    func numberOfSections(in collectionView: UICollectionView) -> Int { return (fetchedResultsController.sections?.count)!}
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fetchedResultsController.fetchedObjects?.count ?? 0
+        return fetchedResultsController.fetchedObjects?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -26,7 +26,7 @@ extension PhotoAlbumViewController:  UICollectionViewDataSource, UICollectionVie
         } else if let url = URL(string: photo.photoURL ?? "") {
             NetworkClient.downloadImage(url: url) { (isSucceeded, data, errorMessage) in
                 guard (isSucceeded == true) else {
-                    self.showAlert(title: "Error Downloading Image", message: errorMessage, buttonText: "Try Again")
+                    //self.showAlert(title: "Error Downloading Image", message: errorMessage, buttonText: "Try Again")
                     return
                 }
                 DispatchQueue.main.async {
