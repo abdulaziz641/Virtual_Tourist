@@ -73,6 +73,9 @@ class PhotoAlbumViewController: UIViewController {
         let sortDescriptor = NSSortDescriptor(key: "photoURL", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
+        let predicate = NSPredicate(format: "pin == %@", loadedPinFromStore)
+        fetchRequest.predicate = predicate
+        
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: appDelegate.dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
         

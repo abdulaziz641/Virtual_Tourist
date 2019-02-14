@@ -66,7 +66,6 @@ class MapViewController: UIViewController {
                 let long = Double((sender.annotation?.coordinate.longitude)!)
                 //photosVC.loadedPinFromStore = Pin(context: appDelegate.dataController.viewContext)
                 photosVC.loadedPinFromStore = loadPin(lat: lat, long: long)!
-                print("\(photosVC.loadedPinFromStore.latitude) \(photosVC.loadedPinFromStore.longitude)")
                 photosVC.receivedPinFromSegue = sender.annotation?.coordinate
             }
         }
