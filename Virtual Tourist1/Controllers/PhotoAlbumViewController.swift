@@ -19,30 +19,20 @@ class PhotoAlbumViewController: UIViewController {
     @IBOutlet weak var loadNewImagesButton: UIBarButtonItem!
     
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    var receivedPinFromSegue: CLLocationCoordinate2D! = CLLocationCoordinate2D()
-    
     var loadedPinFromStore: Pin!
     var loadingNewImages = false
-    
-    var isEditingImages = false
-    
     var fetchedResultsController: NSFetchedResultsController<Photo>!
     
     //Mark: implementing the rquired view functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFetchedResultsController()
-        if fetchedResultsController.fetchedObjects?.count == 0 {
-            fetchImages()
-        } else {
-            loadNewImagesButton.isEnabled = true
-        }
+        shouldFetchNewImages()
+        loadNewImagesButton.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        editingConfiguration()
         configureFlowLayout()
         collectionView.reloadData()
     }
@@ -53,11 +43,6 @@ class PhotoAlbumViewController: UIViewController {
     }
     
     //MARK: IBActions
-    @objc func editImages(_ sender: Any) {
-        isEditingImages = !isEditingImages
-        editingConfiguration()
-    }
-    
     @IBAction func fetchNewImages(_ sender: Any) {
         loadNewImagesButton.isEnabled = false
         loadingNewImages = !loadingNewImages

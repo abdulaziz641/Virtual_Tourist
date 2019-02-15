@@ -31,12 +31,16 @@ extension MapViewController {
         }
     }
     
-    //MARK: View Initialization
-    func initializeApp() {
+    func configureGesureRecognizer() {
         let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap))
         longTapGesture.minimumPressDuration = 0.9
-        mapView.delegate = self
         mapView.addGestureRecognizer(longTapGesture)
+    }
+    
+    //MARK: View Initialization
+    func initializeApp() {
+        mapView.delegate = self
+        configureGesureRecognizer()
         editingConfiguration()
         setupFetchedResultsController()
         addPinsToMap()

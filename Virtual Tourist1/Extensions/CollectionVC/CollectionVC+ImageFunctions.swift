@@ -28,6 +28,14 @@ extension PhotoAlbumViewController {
         }
     }
     
+    func shouldFetchNewImages() {
+        if fetchedResultsController.fetchedObjects?.count == 0 {
+            fetchImages()
+        } else {
+            loadNewImagesButton.isEnabled = true
+        }
+    }
+    
     //MARK: creating a new Photo for Pin
     func createNewPhoto(for pin: Pin, and url: String) {
         let newPhoto = Photo(context: appDelegate.dataController.viewContext)

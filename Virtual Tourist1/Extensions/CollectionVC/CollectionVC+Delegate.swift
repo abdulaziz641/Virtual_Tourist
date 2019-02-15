@@ -26,7 +26,6 @@ extension PhotoAlbumViewController:  UICollectionViewDataSource, UICollectionVie
         } else if let url = URL(string: photo.photoURL ?? "") {
             NetworkClient.downloadImage(url: url) { (isSucceeded, data, errorMessage) in
                 guard (isSucceeded == true) else {
-                    //self.showAlert(title: "Error Downloading Image", message: errorMessage, buttonText: "Try Again")
                     return
                 }
                 DispatchQueue.main.async {

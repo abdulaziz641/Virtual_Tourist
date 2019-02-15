@@ -27,12 +27,4 @@ extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
         flowLayout.minimumLineSpacing = dimension
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
     }
-    
-    func editingConfiguration() {
-        if isEditingImages {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(editImages(_:)))
-        } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit Images", style: .plain, target: self, action: #selector(editImages(_:)))
-        }
-    }
 }

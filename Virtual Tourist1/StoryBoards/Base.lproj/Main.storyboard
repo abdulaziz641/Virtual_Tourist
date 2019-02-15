@@ -94,7 +94,7 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xNn-Po-lfA"/>
-                                    <barButtonItem title="New Collection" id="OvA-4I-rnX">
+                                    <barButtonItem enabled="NO" title="New Collection" id="OvA-4I-rnX">
                                         <connections>
                                             <action selector="fetchNewImages:" destination="baT-O3-ElI" id="ybu-oU-0zi"/>
                                         </connections>
